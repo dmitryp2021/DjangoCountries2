@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Countries, Languages
 
 COUNTRIES = [
     {
@@ -2231,3 +2232,14 @@ def listCount():
         i+=1
 
     return i//10+1
+
+def load_country_to_db_temp():
+    for el in COUNTRIES:
+       Item = Countries(country_name = el['country'])
+       Item.save()
+
+def load_language_to_db_temp():
+    for el in COUNTRIES:
+        for el1 in el['languages']:
+            Item = Languages(language_name = el1)
+            Item.save()
