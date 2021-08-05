@@ -2180,7 +2180,7 @@ def countryblank(request, country_name):
 
 def languageList(request):
     lsts=[]
-    
+
     for el in COUNTRIES:
         for el1 in el['languages']:
             lsts.append(el1)
