@@ -21,7 +21,7 @@
     <h1>List of Country</h1>
         <ol>
             {% for result in results %}
-            <li><a href="/countryblank/{{ result.country }}">{{ result.country }}</a></li>
+            <li><a href="/countryblank/{{ result.country_name }}">{{ result.country_name }}</a></li>
             {% empty %}
             Other county have not
             {% endfor %}

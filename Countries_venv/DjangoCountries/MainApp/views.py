@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Countries, Languages
+from .models import Countries, Languages, World
 
 COUNTRIES = [
     {
@@ -2165,7 +2165,7 @@ def main(request):
     return render(request, "main.html")
 
 def countriesList(request):
-    context = {"results": COUNTRIES, "alfabet": alfabet(), "pagination": pagination()}
+    context = {"results": getListCountries(), "alfabet": alfabet(), "pagination": pagination()}
     return render(request, "countrieslist.html", context)
 
 def countriesListpage(request, page):
@@ -2219,7 +2219,6 @@ def countryForThisLetter(request, letterAlfabet):
 
 def pagination():
     lsts = []
-
     for i in range(1, listCount()):
         lsts.append(i)
 
@@ -2228,9 +2227,8 @@ def pagination():
 
 def listCount():
     i=0
-    for el in COUNTRIES:
+    for el in getListCountries():
         i+=1
-
     return i//10+1
 
 def load_country_to_db_temp():
@@ -2243,3 +2241,18 @@ def load_language_to_db_temp():
         for el1 in el['languages']:
             Item = Languages(language_name = el1)
             Item.save()
+
+def load_world_to_db_temp():
+    for el in COUNTRIES:
+        for el1 in el['languages']:
+            languagesList = Languages.objects.filter(language_name=el1)
+            for lang in languagesList:
+                countriesList = Countries.objects.filter(country_name=el['country'])
+                for cntry in countriesList:
+                   print(cntry.country_name, cntry.pk)
+                   print(lang.language_name, lang.id)
+                   Item = World(CountryId_id = cntry.pk, LanguagesId_id= lang.id)
+                   Item.save()
+
+def getListCountries():
+    return Countries.objects.all()
