@@ -2182,9 +2182,13 @@ def countryblank(request, country_name):
 def languageList(request):
     lsts=[]
 
-    for el in COUNTRIES:
-        for el1 in el['languages']:
-            lsts.append(el1)
+    for el in getListLanguages():
+        lsts.append(el.language_name)
+
+                #for el in COUNTRIES:
+                #    for el1 in el['languages']:
+                #        lsts.append(el1)
+
         context = {"results": lsts, "title":'Language'}
     return render(request, "language.html", context)
 
@@ -2201,18 +2205,27 @@ def countryForThisLanguage(request, language):
 
 def alfabet():
     lsts = []
-    for el in COUNTRIES:
-        if el['country'][0] not in lsts:
-               lsts.append(el['country'][0])
+    for el in getListCountries():
+        if el.country_name[0] not in lsts:
+            lsts.append(el.country_name[0])
+
+                #for el in COUNTRIES:
+                #    if el['country'][0] not in lsts:
+                #           lsts.append(el['country'][0])
 
     return lsts
 
 def countryForThisLetter(request, letterAlfabet):
     lsts = []
-    for el in COUNTRIES:
-        for el1 in el['country']:
-            if el1[0] == letterAlfabet:
-                lsts.append(el['country'])
+
+    for el in getListCountries():
+        if el.country_name[0] == letterAlfabet:
+            lsts.append(el.country_name)
+
+                #for el in COUNTRIES:
+                #    for el1 in el['country']:
+                #        if el1[0] == letterAlfabet:
+                #            lsts.append(el['country'])
 
     context = {"results": lsts, "title":"countrys for this letter"}
     return render(request, "countryslistLetter.html", context)
@@ -2256,3 +2269,6 @@ def load_world_to_db_temp():
 
 def getListCountries():
     return Countries.objects.all()
+
+def getListLanguages():
+    return Languages.objects.all()
