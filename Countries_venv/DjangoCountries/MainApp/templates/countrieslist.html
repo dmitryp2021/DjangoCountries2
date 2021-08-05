@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Country</title>
+
+
+</head>
+<body>
+<br>
+{% if alfabet %}
+            {% for result in alfabet %}
+            <a href="/countryForThisLetter/{{ result }}">{{ result }}</a>
+            {% endfor %}
+{% endif %}
+
+</br>
+
+<a href="/language/">Language</a>
+{% if results %}
+    <h1>List of Country</h1>
+        <ol>
+            {% for result in results %}
+            <li><a href="/countryblank/{{ result.country }}">{{ result.country }}</a></li>
+            {% empty %}
+            Other county have not
+            {% endfor %}
+        </ol>
+{% endif %}
+
+<br>
+{% if pagination %}
+            {% for result in pagination %}
+            <a href="/countries-list/{{ result }}">{{ result }}</a>
+            {% endfor %}
+{% endif %}
+
+</br>
+
+</body>
+</html>

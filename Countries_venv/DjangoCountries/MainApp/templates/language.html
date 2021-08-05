@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+{% if results %}
+    <h1>All language</h1>
+        <ol>
+            {% for result in results %}
+            <li><a href="/countryForThisLanguage/{{ result }}">{{ result }}</a></li>
+            {% empty %}
+            Other county have not
+            {% endfor %}
+        </ol>
+{% endif %}
+</body>
+</html>

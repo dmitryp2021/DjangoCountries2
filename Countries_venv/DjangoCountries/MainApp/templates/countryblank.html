@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+</head>
+<body>
+{% if results %}
+    <h1>List of languages</h1>
+        <ol>
+            {% for result in results %}
+            <li>{{ result }}</li>
+            {% endfor %}
+        </ol>
+{% endif %}
+<a href="/countries-list/">Back to List</a>
+</body>
+</html>
