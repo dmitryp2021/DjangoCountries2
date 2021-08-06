@@ -1,38 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>List of Country</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block context %}
 <br>
 {% if alfabet %}
             {% for result in alfabet %}
-            <a href="/countryForThisLetter/{{ result }}">{{ result }}</a>
+<li class = "ramka"><a href="/countryForThisLetter/{{ result }}">{{ result }}</a></li>
             {% endfor %}
 {% endif %}
 </br>
 
 <a href="/language/">Language</a>
 {% if results %}
-    <h1>List of Country</h1>
+<div class="wrap">
         <ol>
             {% for result in results %}
-            <li><a href="/countryblank/{{ result.country_name }}">{{ result.country_name }}</a></li>
+            <li class = "country"><a href="/countryblank/{{ result.country_name }}">{{ result.country_name }}</a></li>
             {% empty %}
             Other county have not
             {% endfor %}
         </ol>
+</div>
 {% endif %}
 
 <br>
 {% if pagination %}
+<ol>
             {% for result in pagination %}
-            <a href="{% url 'countries-page' result %}">{{ result }}</a>
+            <li class = "ramka"><a  href="{% url 'countries-page' result %}">{{ result }}</a></li>
             {% endfor %}
+</ol>
 {% endif %}
 
-</br>
-
-</body>
-</html>
+{% endblock %}

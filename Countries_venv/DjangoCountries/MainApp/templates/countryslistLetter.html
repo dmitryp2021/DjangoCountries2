@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block context %}
+
 {% if results %}
     <h1>Alfabet</h1>
         <ol>
@@ -15,5 +11,5 @@
             {% endfor %}
         </ol>
 {% endif %}
-</body>
-</html>
+
+{% endblock %}

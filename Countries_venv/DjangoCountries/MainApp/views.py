@@ -2162,7 +2162,7 @@ COUNTRIES = [
 
 # Create your views here.
 def main(request):
-    return render(request, "main.html")
+    return render(request, "main.html",{ "title": "main"})
 
 def countriesList(request):
     context = {"results": getListCountries(), "alfabet": alfabet(), "pagination": pagination()}
@@ -2233,7 +2233,6 @@ def pagination():
     lsts = []
     for i in range(1, listCount()):
         lsts.append(i)
-
     return lsts
 
 
