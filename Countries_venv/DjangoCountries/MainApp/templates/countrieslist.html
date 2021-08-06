@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>List of Country</title>
-
-
 </head>
 <body>
 <br>
@@ -13,7 +11,6 @@
             <a href="/countryForThisLetter/{{ result }}">{{ result }}</a>
             {% endfor %}
 {% endif %}
-
 </br>
 
 <a href="/language/">Language</a>
@@ -31,7 +28,7 @@
 <br>
 {% if pagination %}
             {% for result in pagination %}
-            <a href="/countries-list/{{ result }}">{{ result }}</a>
+            <a href="{% url 'countries-page' result %}">{{ result }}</a>
             {% endfor %}
 {% endif %}
 

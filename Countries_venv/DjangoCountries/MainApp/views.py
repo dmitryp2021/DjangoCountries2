@@ -2217,7 +2217,6 @@ def alfabet():
 
 def countryForThisLetter(request, letterAlfabet):
     lsts = []
-
     for el in getListCountries():
         if el.country_name[0] == letterAlfabet:
             lsts.append(el.country_name)
@@ -2239,33 +2238,33 @@ def pagination():
 
 
 def listCount():
-    i=0
-    for el in getListCountries():
-        i+=1
+    i = Countries.objects.count()
+    #for el in getListCountries():
+    #    i+=1
     return i//10+1
 
-def load_country_to_db_temp():
-    for el in COUNTRIES:
-       Item = Countries(country_name = el['country'])
-       Item.save()
+        #def load_country_to_db_temp():
+        #    for el in COUNTRIES:
+        #       Item = Countries(country_name = el['country'])
+        #      Item.save()
 
-def load_language_to_db_temp():
-    for el in COUNTRIES:
-        for el1 in el['languages']:
-            Item = Languages(language_name = el1)
-            Item.save()
+        #def load_language_to_db_temp():
+        #    for el in COUNTRIES:
+        #        for el1 in el['languages']:
+        #            Item = Languages(language_name = el1)
+        #            Item.save()
 
-def load_world_to_db_temp():
-    for el in COUNTRIES:
-        for el1 in el['languages']:
-            languagesList = Languages.objects.filter(language_name=el1)
-            for lang in languagesList:
-                countriesList = Countries.objects.filter(country_name=el['country'])
-                for cntry in countriesList:
-                   print(cntry.country_name, cntry.pk)
-                   print(lang.language_name, lang.id)
-                   Item = World(CountryId_id = cntry.pk, LanguagesId_id= lang.id)
-                   Item.save()
+        #def load_world_to_db_temp():
+        #    for el in COUNTRIES:
+        #        for el1 in el['languages']:
+        #            languagesList = Languages.objects.filter(language_name=el1)
+        #            for lang in languagesList:
+        #                countriesList = Countries.objects.filter(country_name=el['country'])
+        #                for cntry in countriesList:
+        #                   print(cntry.country_name, cntry.pk)
+        #                   print(lang.language_name, lang.id)
+        #                   Item = World(CountryId_id = cntry.pk, LanguagesId_id= lang.id)
+        #                   Item.save()
 
 def getListCountries():
     return Countries.objects.all()

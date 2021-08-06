@@ -19,10 +19,10 @@ from MainApp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.main),
+    path('', views.main, name = "home"),
     path('countryblank/<str:country_name>', views.countryblank),
-    path('countries-list/<int:page>', views.countriesListpage),
-    path('countries-list/', views.countriesList),
+    path('countries-page/<int:page>', views.countriesListpage, name= "countries-page"),
+    path('countries/', views.countriesList, name= "countries-list"),
     path('language/', views.languageList),
     path('alfabet/', views.pagination),
     path('countryForThisLanguage/<str:language>', views.countryForThisLanguage),
